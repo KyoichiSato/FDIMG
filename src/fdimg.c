@@ -13,6 +13,7 @@ MS-DOS‚ÅŠ¿Žš‚ÌƒƒbƒZ[ƒW‚ð•\Ž¦‚µ‚½‚¢‚Ì‚ÅA‚±‚Ìƒtƒ@ƒCƒ‹‚Í shift-JIS ‚Å•Û‘¶‚³‚ê‚Ä‚
 https://creativecommons.org/publicdomain/zero/1.0/deed.ja
 
 2016”N5ŒŽ18“ú ²“¡‹±ˆê kyoutan.jpn.org
+2020”N2ŒŽ13“ú ƒZƒNƒ^ƒŠ[ƒhƒGƒ‰[ŽžAƒŠƒgƒ‰ƒC‚µ‚Ä‚»‚ê‚Å‚à‚¾‚ß‚È‚çƒGƒ‰[ƒƒbƒZ[ƒW‚ð•\Ž¦‚·‚é‚æ‚¤‚É‚µ‚½
 2016”N6ŒŽ16“ú D88ƒCƒ[ƒW‚Ìì»‚ª³í‚É“®ì‚µ‚½B2HD/2DD/2D‚»‚ê‚¼‚êOKB‚·‚ñ‚È‚è“®‚¢‚Ä‚¤‚ê‚µ‚¢
 2016”N6ŒŽ17“ú FD‚Ö‚Ì‘ž‚Ý‚Å‚«‚½2HD
 2016”N6ŒŽ19“ú ˆê’Ê‚è“®ì³í R001
@@ -21,12 +22,17 @@ https://creativecommons.org/publicdomain/zero/1.0/deed.ja
 22:15 - 22:25 2DD BASIC
 22:26 - 22:35 2HD DOS
 22:38 - 22:47 2HD DOS
-DISKBASIC‚Ìƒtƒƒbƒs[i1ƒVƒŠƒ“ƒ_26ƒZƒNƒ^j‚ð“Ç‚ß‚é‚æ‚¤‚ÉID‚ð‚½‚­‚³‚ñ“Ç‚Þ‚æ‚¤‚É‚µ‚½‚çA2HD 1–‡ 10•ªŠ|‚©‚é‚æ‚¤‚É‚È‚Á‚½B
+DISKBASIC‚Ìƒtƒƒbƒs[i1ƒgƒ‰ƒbƒN26ƒZƒNƒ^j‚ð“Ç‚ß‚é‚æ‚¤‚ÉID‚ð‚½‚­‚³‚ñ“Ç‚Þ‚æ‚¤‚É‚µ‚½‚çA2HD 1–‡ 10•ªŠ|‚©‚é‚æ‚¤‚É‚È‚Á‚½B
 ID‚Ì•À‚Ñ‚ð’²‚×‚é‚Ì‚ª’x‚¢B
 1ƒgƒ‰ƒbƒN‚ÌƒZƒNƒ^”‚ª‘½‚¢‚Æ‚Æ‚Ä‚à’x‚¢(PC-9801‚ÌDISK BASIC“™)B1ƒgƒ‰ƒbƒN•ª‚Ü‚Æ‚ß‚Ä“Ç‚ß‚Î‚«‚Á‚Æ‘¬‚¢
 
 FDIMG.EXE‚Í“¯–¼‚ÌƒvƒƒOƒ‰ƒ€‚ª‚ ‚é‚Ý‚½‚¢
 D88IMG.EXE‚È‚ç–³‚¢‚Ý‚½‚¢
+
+¡Œã
+ƒf[ƒ^CRCƒGƒ‰[‚ªo‚½ŽžA‚»‚Ìƒgƒ‰ƒbƒN‚ÉMFM‚ÆFM‚ª¬Ý‚µ‚Ä‚¢‚È‚¢‚©ŒŸ¸‚·‚é
+FD‚ªƒ‰ƒCƒgƒvƒƒeƒNƒg‚È‚çD88‚É”½‰f‚³‚¹‚é ‚µ‚È‚¢‚Ù‚¤‚ª‚¢‚¢‚©
+‚Pƒgƒ‰ƒbƒN‚Ü‚Æ‚ß‚Ä‘‚«ž‚Ý
 */
 
 /*#include <stdlib.h>*/
@@ -43,24 +49,23 @@ struct st_d88_sect_header	D88SECT;
 FILE *D88FILE;
 
 #define DEFAULTEXT "D88"	/*ƒfƒtƒHƒ‹ƒgŠg’£Žq*/
-/*BIOS‚Å8‰ñƒŠƒgƒ‰ƒC‚·‚é‚Ì‚ÅAŽ©‘O‚ÌƒŠƒgƒ‰ƒC‚Í–³‚µ*/
-/*#define TRYCOUNT	5*/	/*ƒZƒNƒ^ƒŠ[ƒhŽžƒŠƒgƒ‰ƒCƒJƒEƒ“ƒg*/
-/*ƒtƒH[ƒ}ƒbƒg”»•ÊŽž‚ÍƒGƒ‰[‚È‚ç•Ê‚Ìƒgƒ‰ƒbƒN‚ð“Ç‚Þ*/
-#define TRYFCOUNT	20	/*ƒtƒH[ƒ}ƒbƒg”»•ÊŽžƒŠƒgƒ‰ƒCƒJƒEƒ“ƒg*/
-#define CY2D 41		/*2D ‚ÌƒVƒŠƒ“ƒ_” •’Ê‚Í40‚Å‚·*/
-#define CY2DD 82	/*2DD‚ÌƒVƒŠƒ“ƒ_” •’Ê‚Í80‚Å‚·*/
-#define CY2HD 82	/*2HD‚ÌƒVƒŠƒ“ƒ_” PC98“™‚Í77APC/AT‚Í80‚Å‚·*/
-#define SECTMAX   32 /*Å‘åƒZƒNƒ^” 1ƒZƒNƒ^256ƒoƒCƒg‚ÌŽž26‚È‚Ì‚Å—]—T‚ðŒ©‚Ä32‚­‚ç‚¢*/
+#define TRYCOUNT	5	/*ƒZƒNƒ^ƒŠ[ƒhŽžƒŠƒgƒ‰ƒCƒJƒEƒ“ƒg*/
+#define TRYFCOUNT	20	/*ƒtƒH[ƒ}ƒbƒg”»•ÊŽž•Ê‚Ìƒgƒ‰ƒbƒN‚ð“Ç‚ÞƒŠƒgƒ‰ƒCƒJƒEƒ“ƒg*/
+#define CY2D	41		/*2D ‚ÌƒVƒŠƒ“ƒ_” •’Ê‚Í40‚Å‚·*/
+#define CY2DD	82		/*2DD‚ÌƒVƒŠƒ“ƒ_” •’Ê‚Í80‚Å‚·*/
+#define CY2HD	82		/*2HD‚ÌƒVƒŠƒ“ƒ_” PC98“™‚Í77APC/AT‚Í80‚Å‚·*/
+#define SECTMAX   32	/*Å‘åƒZƒNƒ^” 1ƒZƒNƒ^256ƒoƒCƒg‚ÌŽž26‚È‚Ì‚Å—]—T‚ðŒ©‚Ä32‚­‚ç‚¢*/
 #define BUFFSIZE  (16*1024)
 unsigned char BUFF[BUFFSIZE];
 
 char FILENAME[256];
 unsigned char DRIVE;
 unsigned char MODE;
-#define READ	0
-#define WRITE	1
-#define M2D		0x10
-
+#define READ		0
+#define WRITE		1
+#define M2D			(1 << 4)
+/*#define MMFM		(1 << 5)
+#define MDATAERR	(1 << 6)*/
 unsigned char IDBUFF[SECTMAX * 4];
 
 void usage(void)
@@ -78,7 +83,7 @@ void usage(void)
 	puts("    FDIMG filename.d88 0");
     return;
 */    
-	puts("FLOPPY DISK IMAGE FILE READER / WRITER  R001");
+	puts("FLOPPY DISK IMAGE FILE READER / WRITER  R002");
 	puts("");
 	puts("ƒtƒƒbƒs[ƒfƒBƒXƒN‚ð“Ç‚ñ‚ÅD88Œ`Ž®‚ÌƒfƒBƒXƒNƒCƒ[ƒW‚ðì‚Á‚½‚èAD88Œ`Ž®‚ÌƒfƒBƒXƒNƒCƒ[ƒW‚ðƒtƒƒbƒs[ƒfƒBƒXƒN‚É‘‚«ž‚Ý‚Ü‚·B");
     puts("ƒtƒƒbƒs[ƒfƒBƒXƒNƒhƒ‰ƒCƒu‚ÌŽw’è‚É‚ÍA");
@@ -409,7 +414,7 @@ int sectseq(unsigned char device, unsigned char mod, unsigned char h)
 /*device:0-3*/
 int readmode(unsigned char device)
 {
-	unsigned char count;
+	unsigned char count, try;
 	unsigned char mod, track, tr_max;
 	unsigned char sectcount;
 
@@ -499,21 +504,49 @@ int readmode(unsigned char device)
 			/*ƒZƒNƒ^‚ð“Ç‚Þ*/
 			for(count = 0; count != sectcount; count++)
 			{
-				printf(" %2d %2d %2d %2d \r",IDBUFF[count * 4 + 0] /* C */ /* \r ƒLƒƒƒŠƒbƒWƒŠƒ^[ƒ“ \n ƒ‰ƒCƒ“ƒtƒB[ƒh */
-				                            ,IDBUFF[count * 4 + 1] /* H */
-										    ,IDBUFF[count * 4 + 2] /* R */
-										    ,IDBUFF[count * 4 + 3] /* N */);
+				for(try = 0; TRYCOUNT != try; try++)
+				{
+					printf(" %2d %2d %2d %2d \r",IDBUFF[count * 4 + 0] /* C */ /* \r ƒLƒƒƒŠƒbƒWƒŠƒ^[ƒ“ \n ƒ‰ƒCƒ“ƒtƒB[ƒh */
+					                            ,IDBUFF[count * 4 + 1] /* H */
+											    ,IDBUFF[count * 4 + 2] /* R */
+											    ,IDBUFF[count * 4 + 3] /* N */);
 
-				memset(&D88SECT, 0, sizeof D88SECT);	/*ƒZƒNƒ^ƒwƒbƒ_ƒ[ƒƒNƒŠƒA*/
+					memset(&D88SECT, 0, sizeof D88SECT);	/*ƒZƒNƒ^ƒwƒbƒ_ƒ[ƒƒNƒŠƒA*/
 
-				/*D88‚ÌƒGƒ‰[ƒR[ƒh‚ÍPC98‚ÌBIOS‚ÌƒGƒ‰[ƒR[ƒh*/
-				D88SECT.status = readdata(device
-				                         ,mod
-										 ,IDBUFF[count * 4 + 0] /* C */
-										 ,IDBUFF[count * 4 + 1] /* H */
-										 ,IDBUFF[count * 4 + 2] /* R */
-										 ,IDBUFF[count * 4 + 3] /* N */
-										 ,BUFF);
+					/*D88‚ÌƒGƒ‰[ƒR[ƒh‚ÍPC98‚ÌBIOS‚ÌƒGƒ‰[ƒR[ƒh*/
+					D88SECT.status = readdata(device
+					                         ,mod
+											 ,IDBUFF[count * 4 + 0] /* C */
+											 ,IDBUFF[count * 4 + 1] /* H */
+											 ,IDBUFF[count * 4 + 2] /* R */
+											 ,IDBUFF[count * 4 + 3] /* N */
+											 ,BUFF);
+				
+					/* ƒŠ[ƒhƒGƒ‰[‚ª‚ ‚Á‚½‚ç•\Ž¦‚·‚é */
+					if(0 != D88SECT.status)
+					{
+						/*ƒGƒ‰[‚ª‚ ‚Á‚½*/
+						printf("                                                                           \r"); /* Œ»ÝsÁ‹Ž */
+						printf(" %2d %2d %2d %2d  :%2d:",IDBUFF[count * 4 + 0] /* C */
+					                            	,IDBUFF[count * 4 + 1] /* H */
+										  	    	,IDBUFF[count * 4 + 2] /* R */
+											    	,IDBUFF[count * 4 + 3] /* N */
+													,1 + try ); /* ƒŠƒgƒ‰ƒC” */
+						printf( errmsg(D88SECT.status));
+						printf("\r");
+					}
+					else
+					{
+						/*ƒGƒ‰[‚ª‚È‚©‚Á‚½*/
+						break;
+					}				
+				}
+
+				if(0 != D88SECT.status)
+				{
+					printf("\n");	/* ƒGƒ‰[‚ª‚ ‚Á‚½‚Æ‚«‰üs‚µ‚ÄƒGƒ‰[ƒƒbƒZ[ƒWŽc‚· */
+				}
+
 				D88SECT.c = IDBUFF[count * 4 + 0]; /* C */
 				D88SECT.h = IDBUFF[count * 4 + 1]; /* H */
 				D88SECT.r = IDBUFF[count * 4 + 2]; /* R */
@@ -574,11 +607,11 @@ int readmode(unsigned char device)
 	return TRUE;
 }
 
+/*ƒtƒ@ƒCƒ‹‚©‚ç“Ç‚ñ‚Åƒtƒƒbƒs[‚Ö‘‚«ž‚Þƒ‚[ƒh*/
 int writemode(void)
 {
 	unsigned char device, track, tr_max, mod, sectcount, count;
 
-	/*ƒtƒ@ƒCƒ‹‚©‚ç“Ç‚ñ‚Åƒtƒƒbƒs[‚Ö‘‚«ž‚Þƒ‚[ƒh*/
 	addext(FILENAME, DEFAULTEXT);		/*ƒtƒ@ƒCƒ‹–¼‚ÉŠg’£Žq‚ª–³‚¯‚ê‚ÎŠg’£Žq’Ç‰Á*/
 	/*ƒtƒ@ƒCƒ‹‚ðŠJ‚­*/
 	D88FILE = fopen(FILENAME, "rb");

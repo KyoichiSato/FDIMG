@@ -7,6 +7,7 @@ LSI C-86 Ver.3.30 試食版用
 https://creativecommons.org/publicdomain/zero/1.0/deed.ja
 
 2016年2月1日 佐藤恭一 kyoutan.jpn.org
+2020年2月13日 エラーメッセージにコード0（エラーなし）追加
 2016年6月19日 更新
 
 「PC-9800シリーズ テクニカルデータブック」を見ながら書きました。
@@ -535,6 +536,8 @@ unsigned char secthead(unsigned char drive
 /* エラーコードからエラーメッセージを得る */
 char *errmsg(unsigned char ah)
 {
+  if(0==ah) return "No error";
+
   switch(ah & 0xF8)
   {
     case 0x08:
