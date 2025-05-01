@@ -11,10 +11,20 @@ LSI C-86 Ver.3.30 試食版でコンパイルできるソースコード付き�
 「PC-9800シリーズ テクニカルデータブック」を見ながら書きました。
 
 
-## ダウンロード
-* [fdimg20200214R002.zip](RELEASE/fdimg20200214R002.zip) セクタリードエラーを表示するようにした
-* [fdimg20160619R001.zip](RELEASE/fdimg20160619R001.zip) 初版
+## 目次
+1. [ダウンロード](#ダウンロード)
+2. [使い方](#使い方)
+3. [動作環境](#動作環境)
+4. [その他](#その他)
+5. [余談](#以下余談)
+6. [ビルド方法]()
 
+
+## ダウンロード
+* [fdimg20200214R002.zip](https://github.com/KyoichiSato/FDIMG/releases/download/R002/fdimg20200214R002.zip) セクタリードエラーを表示するようにした
+* [fdimg20160619R001.zip](https://github.com/KyoichiSato/FDIMG/releases/download/R001/fdimg20160619R001.zip) 初版
+
+ビルド済の実行ファイルも含んでいます。
 
 ## 使い方
 ```
